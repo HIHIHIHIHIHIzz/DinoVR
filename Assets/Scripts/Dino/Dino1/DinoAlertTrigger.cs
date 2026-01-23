@@ -45,7 +45,7 @@ public class DinoAlertTrigger : MonoBehaviour
 
             if (calmTimer >= calmDuration)
             {
-                brain.SetState(DinoState.Idle, "거리 확보로 경계 해소");
+                brain.SetState(DinoState.CalmReady, "거리 확보로 경계 해소");
                 calmTimer = 0f;
             }
         }

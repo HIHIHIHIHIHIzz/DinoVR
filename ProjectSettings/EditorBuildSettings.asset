@@ -11,10 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/UnityLabs01.unity
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TheLabs.unity
     guid: 00000000000000000000000000000000
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 72016e27553ae624aace1d3fbb58ca66,
+      type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 908d62378b8205449861e5838a18a596,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4b3de149e50ea0c4f8ad04c79b9f12ec,
