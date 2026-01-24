@@ -44,6 +44,10 @@ public class DinosaurBrain : MonoBehaviour
                 break;
             case DinoState.Sleeping:
                 animator.SetTrigger("Sleep");
+                animator.SetBool("Alert", false);
+                animator.SetBool("Angry", false);
+                animator.SetBool("Calm", false);
+                animator.SetBool("Eat", false);
                 break;
             case DinoState.Watching:
                 animator.SetBool("Alert", false);

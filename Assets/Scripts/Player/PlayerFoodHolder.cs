@@ -2,10 +2,24 @@
 
 public class PlayerFoodHolder : MonoBehaviour
 {
+    public static PlayerFoodHolder Instance;
+
     public bool IsHoldingFood { get; private set; }
 
     // 🔥 던짐 이벤트 (한 프레임용)
     public bool FoodThrownThisFrame { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            return;
+        }
+    }
 
     public void PickUpFood()
     {

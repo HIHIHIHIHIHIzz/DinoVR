@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class FoodSnapZone : MonoBehaviour
@@ -7,22 +8,36 @@ public class FoodSnapZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // �������� Ȯ��
-        Food food = other.GetComponent<Food>();
-        if (food == null) return;
+        if (other.GetComponentInParent<Food>() == null) return;
 
-        // ��� ���¿����� �۵�
-        if (brain.CurrentState != DinoState.Alert) return;
+        Food food = other.GetComponentInParent<Food>();
 
-        Rigidbody rb = other.GetComponent<Rigidbody>();
+        if (brain.CurrentState == DinoState.Alert)
+        {
+            brain.SetState(DinoState.Angry, "경계중 먹이 급여");
+            return;
+        }
+
+        /*Rigidbody rb = other.GetComponentInParent<Rigidbody>();
         if (rb != null)
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
-        }
+        }*/
 
-        other.transform.position = snapTarget.position;
+        //other.transform.position = snapTarget.position;
 
-        brain.SetState(DinoState.Angry, "��� �� ���� ���� ����");
+        StartCoroutine(EatFlow(other.transform.parent.gameObject));
+    }
+
+    IEnumerator EatFlow(GameObject foodObj)
+    {
+        //yield return new WaitUntil(() => !PlayerFoodHolder.Instance.IsHoldingFood);
+        yield return new WaitForSeconds(1);
+        brain.SetState(DinoState.Eating, "먹이 급여");
+        foodObj.transform.position = snapTarget.position;
+        yield return new WaitForSeconds(5);
+        foodObj.SetActive(false);
+        brain.SetState(DinoState.Sleeping, "식사 완료");
     }
 }
